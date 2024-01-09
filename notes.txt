@@ -1,0 +1,51 @@
+- Vérifier que make est installé dans : C:\msys64\usr\bin
+
+- sinon : pacman -S make
+
+- rajouter la variable d'environnement avec le chemin plus haut
+
+- créer un fichier Makefile 
+
+
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c99
+FILE_EXEC = hangman.Exe
+EXEC = hangman
+SRCDIR = .
+OBJDIR = obj
+
+# Trouve tous les fichiers source dans les répertoires spécifiés
+SRC = $(wildcard $(SRCDIR)/*.c)
+
+# Génère les noms des fichiers objets à partir des fichiers source
+OBJ = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRC))
+
+all: $(EXEC)
+
+$(EXEC): $(OBJ)
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(@D) # Crée le répertoire obj s'il n'existe pas
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(EXEC) $(OBJ)
+
+fclean: clean
+
+run: $(EXEC)
+	./$(EXEC)
+
+
+- Lancer git bash en executeur sinon il y aura un probleme de permission
+
+- utiliser la commande make
+
+- Pour éviter les problemes de definitions multiples il faut pour chaque fichiers de code :
+	- Un fichier file.c => définit la méthode hello()
+	- Un fichier file.h => déclare la méthode hello()
+
+	- Le file.c doit include le file.h
+	- Le main.c doit inclure le file.h
+	
