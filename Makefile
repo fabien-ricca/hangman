@@ -1,29 +1,15 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99
-FILE_EXEC = hangman.Exe
 EXEC = hangman
-SRCDIR = .
-OBJDIR = obj
+SRC = $(wildcard src/*.c)	# Tous les fichiers .c
+OBJ = $(SRC:.c=.o)			# Comme SRC mais on remplace .c par .o
 
-# Trouve tous les fichiers source dans les répertoires spécifiés
-SRC = $(wildcard $(SRCDIR)/*.c)
 
-# Génère les noms des fichiers objets à partir des fichiers source
-OBJ = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRC))
+all : $(EXEC)
 
-all: $(EXEC)
+%.o : %.c	# Tous les fichiers .o : Tous les fichiers .c
+	$(CC) -o $@ -c $<
 
-$(EXEC): $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $@
-
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@mkdir -p $(@D) # Crée le répertoire obj s'il n'existe pas
-	$(CC) $(CFLAGS) -c $< -o $@
-
-clean:
-	rm -f $(EXEC) $(OBJ)
-
-fclean: clean
-
-run: $(EXEC)
-	./$(EXEC)
+$(EXEC) : $(OBJ)
+	$(CC) -o $@ $^
+	cp src/*.o obj/
+	rm -rf src/*.o
