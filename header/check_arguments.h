@@ -2,8 +2,7 @@
 #ifndef CHECK_ARGUMENTS_H
 #define CHECK_ARGUMENTS_H
 
-
-int checkArgs(int nbArgs, char* argsArray);
+int checkArgs(int argc, char *argv);
 
 int checkNbArgs(int nb);
 
