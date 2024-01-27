@@ -13,7 +13,9 @@
  */
 int main(int argc, char *argv[]) {
 
-    checkArgs(argc, *argv);
+    if(checkArgs(argc, argv) == 1){
+        return 1;
+    }
 
     return 0;
 }

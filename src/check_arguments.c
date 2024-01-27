@@ -4,13 +4,13 @@
 #include "../header/check_arguments.h"
 
 
-int checkArgs(int argc, char *argv){
+int checkArgs(int argc, char *argv[]){
     if(checkNbArgs(argc) == 1){
         printf("%s\n", "Merci de saisir le bon nombre d'arguments.");
         return 1;
     }
 
-    if(checkDifficult(*argv[3]) == 1){
+    if(checkDifficult(argv[2]) == 1){
         printf("%s\n", "Merci de saisir une difficulté correcte.");
         return 1;
     }
@@ -19,6 +19,7 @@ int checkArgs(int argc, char *argv){
 }
 
 
+// Vérifie le nombre d'arguments
 int checkNbArgs(int nb){
     if( nb == 1 || nb == 4){
         return 0;
@@ -26,7 +27,10 @@ int checkNbArgs(int nb){
     return 1;
 }
 
+
+// Vérifie que la difficulté passée est correcte
 int checkDifficult(char *difficult){
+    printf("%s\n", difficult);
     if(difficult == NULL){
         return 1;
     }
