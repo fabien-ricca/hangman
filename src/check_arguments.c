@@ -30,7 +30,6 @@ int checkNbArgs(int nb){
 
 // Vérifie que la difficulté passée est correcte
 int checkDifficult(char *difficult){
-    printf("%s\n", difficult);
     if(difficult == NULL){
         return 1;
     }
