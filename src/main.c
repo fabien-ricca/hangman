@@ -6,6 +6,22 @@
 #include "../header/game.h"
 
 
+int play(int argc,  char *argv[]){
+    // On parcours le fichier csv et on établie la liste de lignes utilisables.
+    char *good_lines[1000];
+    int num_lines = readFile(argc, argv, good_lines);
+
+    // Si le fichier ne contient aucune ligne correcte.
+    if(num_lines == 0){
+        printf("!!! invalid file. !!!\n");
+    }
+
+    //Si la liste n'est pas vide.
+    start(num_lines, good_lines);
+
+    return 0;
+}
+
 
 /**
  * <strong>Arguments :</strong><br>
@@ -16,31 +32,23 @@
  */
 int main(int argc, char *argv[]) {
     printf("\n");
+    int game = 0;
 
     // On vérifie les arguments.
     if(checkArgs(argc, argv) == 1){
         return 1;
     }
 
-    // On parcours le fichier csv et on établie la liste de lignes utilisables.
-    char *good_lines[1000];
-    int num_lines = readFile(argc, argv, good_lines);
-    if (num_lines == 1){
-        return 1;
-    }
-
-    // Si le fichier ne contient aucune ligne correcte.
-    if(num_lines == 0){
-        printf("!!! invalid file. !!!\n");
+    // On lance le jeu.
+    while(game == 0){
+        if(play(argc, argv) == 1){
+            break;
+        }
+        game = replay();
+        argc = 1;
     }
 
 
-    //Si la liste n'est pas vide.
-    start(num_lines, good_lines);
-
-    if(replay() == 0){
-
-    }
 
     return 0;
 }

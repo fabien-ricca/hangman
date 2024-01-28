@@ -227,12 +227,17 @@ int checkWord(char *wordToGuess, char *wordToVerify){
 }
 
 
+// Demande au joueur s'il souhaite rejouer.
 int replay(){
-    char input[100];
+    char letter;
     printf("\nSouhaitez-vous rejouer (y/n) ? ");
     fflush(stdout); // Vide le tampon de sortie
-    fgets(input, sizeof(input), stdin); // L'utilisateur saisit sa réponse.
+    scanf(" %c", &letter);
 
 
-    return 0;
+    if(letter == 'y'){
+        return 0;
+    }
+
+    return 1;
 }
