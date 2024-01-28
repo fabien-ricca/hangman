@@ -8,16 +8,15 @@
 
 int readFile(int argc, char *argv[], char *good_lines[]){
 
-    FILE *file = (isFileExist(argv[1]) == 0) ? fopen(argv[1], "r") : fopen("dico.csv", "r");
-
     if(isFileExist(argv[1]) != 0){
-        printf("--> Fichier \"%s\" non conforme. Utilisation du dictionnaire par défaut.\n\n", argv[1]);
+        if(argc == 4){
+            printf("--> Fichier \"%s\" non conforme. Utilisation du dictionnaire par défaut.\n\n", argv[1]);
+        }
         argv[1] = "dico.csv";
-        fopen("dico.csv", "r");
     }
-    else{
-        fopen(argv[1], "r");
-    }
+
+
+    FILE *file = fopen(argv[1], "r");
 
     printf("--> Parsing du dictionnaire \"%s\" en cours...\n", argv[1]);
 
