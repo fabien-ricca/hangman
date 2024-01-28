@@ -21,8 +21,8 @@ int main(int argc, char *argv[]) {
     }
 
     // On parcours le fichier csv.
-    char **good_lines = NULL;
-    int num_lines = readFile(argv, &good_lines);
+    char *good_lines[1000];
+    int num_lines = readFile(argv, good_lines);
     if (num_lines == 1){
         return 1;
     }
@@ -32,7 +32,10 @@ int main(int argc, char *argv[]) {
         printf("%s\n", "invalid file.");
     }
 
-
+    printf("%s\n", "GOOD_LINES :");
+    for (int i = 0; i < num_lines; i++) {
+        printf("Ligne %d : %s\n", i, good_lines[i]);
+    }
 
 
     return 0;

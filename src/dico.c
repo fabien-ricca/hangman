@@ -6,7 +6,7 @@
 #include "../header/check_arguments.h"
 
 
-int readFile(char *argv[], char **good_lines[]){
+int readFile(char *argv[], char *good_lines[]){
 
     FILE *file = (isFileExist(argv[1]) == 0) ? fopen(argv[1], "r") : fopen("dico.csv", "r") ;
 
@@ -34,8 +34,7 @@ int readFile(char *argv[], char **good_lines[]){
             continue;
         }
 
-        *good_lines = (char **)realloc(*good_lines, (num_lines + 1) * sizeof(char *));
-        *good_lines[num_lines] = strdup(line);
+        good_lines[num_lines] = strdup(line);
         num_lines++;
 
     }
