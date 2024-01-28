@@ -1,9 +1,19 @@
 #Fruits
 pomme,fruits,facile
 banane,fruits,facile
+fraise,fruits,facile
+kiwi,fruits,moyen
+poire,fruits,moyen
 noix de coco,fruits,moyen
 papaye,fruits,difficile
+fruit du dragon,fruits,difficile
+figue,fruits,difficile
 #Langages
 html,langages,facile
-assembly,langages,difficil
+CSS,langages,facile
+Javascript,langages,facile
+python,langages,moyen
+angular,langages,moyen
 cobol,langages,moyen
+java,langages,difficile
+csharp,langages,difficile

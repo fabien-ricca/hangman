@@ -6,7 +6,7 @@
 #include "../header/check_arguments.h"
 
 
-int readFile(char *argv[], char *good_lines[]){
+int readFile(int argc, char *argv[], char *good_lines[]){
 
     FILE *file = (isFileExist(argv[1]) == 0) ? fopen(argv[1], "r") : fopen("dico.csv", "r");
 
@@ -45,8 +45,10 @@ int readFile(char *argv[], char *good_lines[]){
             continue;
         }
 
-        good_lines[num_lines] = strdup(line);
-        num_lines++;
+        if(isLineCompliant(argc, argv, tokens) == 0){   // On ajoute ou non la ligne à la liste.
+            good_lines[num_lines] = strdup(line);
+            num_lines++;
+        }
 
     }
 
@@ -114,4 +116,20 @@ int checkLine(char **tokens){
     }
 
     return 0;
+}
+
+
+// Ligne qui va vérifier les lignes à ajouter selon les arguments passés à l'exécution.
+int isLineCompliant(int argc, char *argv[], char **tokens){
+    if(argc == 1){
+        return 0;
+    }
+
+    if(argc == 4){
+        if((strcmp(tokens[1], argv[3]) == 0) && (strcmp(tokens[2], argv[2]) == 0)){
+            return 0;
+        }
+    }
+
+    return 1;
 }

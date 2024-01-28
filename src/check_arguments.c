@@ -10,7 +10,7 @@ int checkArgs(int argc, char *argv[]){
         return 1;
     }
 
-    if(checkDifficult(argv[2]) == 1){
+    if(argc == 4 && checkDifficult(argv[2]) == 1){
         printf("%s\n", "Merci de saisir une difficulté correcte.");
         return 1;
     }

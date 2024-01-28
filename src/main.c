@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../header/check_arguments.h"
 #include "../header/dico.h"
+#include "../header/game.h"
 
 
 
@@ -21,9 +22,9 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // On parcours le fichier csv.
+    // On parcours le fichier csv et on établie la liste de lignes utilisables.
     char *good_lines[1000];
-    int num_lines = readFile(argv, good_lines);
+    int num_lines = readFile(argc, argv, good_lines);
     if (num_lines == 1){
         return 1;
     }
@@ -33,11 +34,14 @@ int main(int argc, char *argv[]) {
         printf("!!! invalid file. !!!\n");
     }
 
+
     printf("%s\n", "GOOD_LINES :");
     for (int i = 0; i < num_lines; i++) {
         printf("Ligne %d : %s\n", i, good_lines[i]);
     }
 
+    //Si la liste n'est pas vide.
+    start(argc, argv, num_lines);
 
     return 0;
 }
