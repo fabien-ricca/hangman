@@ -8,7 +8,18 @@
 
 int readFile(char *argv[], char *good_lines[]){
 
-    FILE *file = (isFileExist(argv[1]) == 0) ? fopen(argv[1], "r") : fopen("dico.csv", "r") ;
+    FILE *file = (isFileExist(argv[1]) == 0) ? fopen(argv[1], "r") : fopen("dico.csv", "r");
+
+    if(isFileExist(argv[1]) != 0){
+        printf("--> Fichier \"%s\" non conforme. Utilisation du dictionnaire par défaut.\n\n", argv[1]);
+        argv[1] = "dico.csv";
+        fopen("dico.csv", "r");
+    }
+    else{
+        fopen(argv[1], "r");
+    }
+
+    printf("--> Parsing du dictionnaire \"%s\" en cours...\n", argv[1]);
 
     char line[1000];
     int nb = 0;
@@ -30,7 +41,7 @@ int readFile(char *argv[], char *good_lines[]){
         char **tokens = splitLine(line_copy);
 
         if(checkLine(tokens) == 1){
-            printf("error on line %d : \"%s\"\n", nb, line);
+            printf("Error on line %d : \"%s\"\n", nb, line);
             continue;
         }
 
@@ -39,6 +50,7 @@ int readFile(char *argv[], char *good_lines[]){
 
     }
 
+    printf("--> Parsing terminé\n");
     fclose(file);
     return num_lines;
 }

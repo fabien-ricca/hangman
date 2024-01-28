@@ -14,6 +14,7 @@
  * arg[3] -> catégorie<br>
  */
 int main(int argc, char *argv[]) {
+    printf("\n");
 
     // On vérifie les arguments.
     if(checkArgs(argc, argv) == 1){
@@ -29,7 +30,7 @@ int main(int argc, char *argv[]) {
 
     // Si le fichier ne contient aucune ligne correcte.
     if(num_lines == 0){
-        printf("%s\n", "invalid file.");
+        printf("!!! invalid file. !!!\n");
     }
 
     printf("%s\n", "GOOD_LINES :");
