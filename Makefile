@@ -8,7 +8,7 @@ OBJ = $(SRC:.c=.o)			# Comme SRC mais on remplace .c par .o
 all : $(EXEC)
 
 %.o : %.c	# Tous les fichiers .o : Tous les fichiers .c
-	$(CC) $(CFLAGS)  -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 $(EXEC) : $(OBJ)
 	$(CC) -o $@ $^

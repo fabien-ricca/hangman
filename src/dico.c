@@ -98,10 +98,6 @@ char** splitLine(char *line_copy) {
 // Effectue les vérifications pour déterminer si la ligne est utilisable
 int checkLine(char **tokens){
 
-    if(strcmp(tokens[1], "facile") == 0){
-        return 1;
-    }
-
     if(checkDifficult(tokens[2]) == 1){
         return 1;
     }
