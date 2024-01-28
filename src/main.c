@@ -35,13 +35,12 @@ int main(int argc, char *argv[]) {
     }
 
 
-    printf("%s\n", "GOOD_LINES :");
-    for (int i = 0; i < num_lines; i++) {
-        printf("Ligne %d : %s\n", i, good_lines[i]);
-    }
-
     //Si la liste n'est pas vide.
-    start(argc, argv, num_lines);
+    start(num_lines, good_lines);
+
+    if(replay() == 0){
+
+    }
 
     return 0;
 }
